@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:addStatesFromChildren="true"
+    android:id="@+id/item_task">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:id="@+id/unwrapped_item_task">
+
+        <CheckBox
+            android:id="@+id/checkbox_task_completed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="60dp"
+            android:layout_gravity="start|top"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:text="AA"
+            android:id="@+id/taskName"/>
+
+        <CheckBox
+            android:id="@+id/checkbox_task_favorite"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center_vertical|end"
+            android:clickable="true"
+            android:button="@drawable/check_favorite"
+            android:checked="true"
+            android:theme="@style/checkbox_favorite"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>
