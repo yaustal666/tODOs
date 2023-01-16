@@ -1,24 +1,25 @@
 package com.yaustal666.todos.data
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
 
     @Query("SELECT * FROM tasks" +
             "WHERE !subtask")
-    fun getTasks() : List<Task>
+    fun getTasks() : Flow<List<Task>>
 
     @Query("SELECT * FROM tasks" +
             "WHERE !subtask AND parent = :parentTask")
-    fun getSubs(parentTask : Int) : List<Task>
+    fun getSubs(parentTask : Int) : Flow<List<Task>>
 
     @Insert
-    fun addTask(task : Task)
+    suspend fun addTask(task : Task)
 
     @Update
-    fun updateTask(task : Task)
+    suspend fun updateTask(task : Task)
 
     @Delete
-    fun deleteTask(task : Task)
+    suspend fun deleteTask(task : Task)
 }

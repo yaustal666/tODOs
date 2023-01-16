@@ -1,9 +1,12 @@
 package com.yaustal666.todos.data
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @Entity(tableName = "tasks")
 data class Task (
     @PrimaryKey(autoGenerate = true) val id : Int,
@@ -15,4 +18,4 @@ data class Task (
     @ColumnInfo(name = "subtask") var isSub : Boolean,
     @ColumnInfo(name = "parentId") val parentTask : Int,
     @ColumnInfo(name = "listId") val whatList : Int
-)
+) : Parcelable

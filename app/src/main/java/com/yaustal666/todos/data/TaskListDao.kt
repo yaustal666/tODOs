@@ -1,19 +1,20 @@
 package com.yaustal666.todos.data
 
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskListDao {
 
     @Query("SELECT * FROM task_lists")
-    fun getTaskLists() : List<TaskList>
+    fun getTaskLists() : Flow<List<TaskList>>
 
     @Insert
-    fun addList(list : TaskList)
+    suspend fun addList(list : TaskList)
 
     @Update
-    fun updateList(list : TaskList)
+    suspend fun updateList(list : TaskList)
 
     @Delete
-    fun deleteList(list : TaskList)
+    suspend fun deleteList(list : TaskList)
 }
