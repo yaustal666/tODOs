@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/fragment_new_task">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_back"
+                android:id="@+id/button_back"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:text="Create task"
+                android:textColor="@color/black"
+                android:textSize="24sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:inputType="text"
+                android:hint="Name your new task"
+                android:textSize="20sp"
+                android:gravity="start|center"
+                android:importantForAutofill="no"
+                android:id="@+id/etxt_new_task_name"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:minHeight="40dp"
+                android:inputType="text"
+                android:hint="Add description if you want"
+                android:textSize="18sp"
+                android:gravity="start|center"
+                android:importantForAutofill="no"
+                android:id="@+id/etxt_new_task_descript"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_all_lists"
+                android:scaleX="0.7"
+                android:scaleY="0.7"
+                android:id="@+id/button_date_set"/>
+
+            <CheckBox
+                android:id="@+id/checkbox_task_favorite"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_vertical"
+                android:clickable="true"
+                android:button="@drawable/check_favorite"
+                android:checked="false"
+                android:theme="@style/checkbox_favorite"/>
+
+        </LinearLayout>
+
+        <DatePicker
+            android:id="@+id/date_picker"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:layout_gravity="center|top"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+
+
+</FrameLayout>

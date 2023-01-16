@@ -39,7 +39,7 @@
             android:layout_gravity="center_vertical|end"
             android:clickable="true"
             android:button="@drawable/check_favorite"
-            android:checked="true"
+            android:checked="false"
             android:theme="@style/checkbox_favorite"/>
 
 
