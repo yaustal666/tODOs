@@ -24,6 +24,7 @@ object AppDiModule {
     ) =
         Room.databaseBuilder(app, AppDataBase::class.java, "todo_app_db")
             .fallbackToDestructiveMigration()
+            .addCallback(callback)
             .build()
 
     @Provides

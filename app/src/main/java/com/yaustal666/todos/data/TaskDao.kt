@@ -6,12 +6,12 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface TaskDao {
 
-    @Query("SELECT * FROM tasks" +
-            "WHERE !subtask")
+    @Query("SELECT * FROM tasks \n" +
+            "WHERE NOT subtask")
     fun getTasks() : Flow<List<Task>>
 
-    @Query("SELECT * FROM tasks" +
-            "WHERE !subtask AND parent = :parentTask")
+    @Query("SELECT * FROM tasks \n" +
+            "WHERE NOT subtask AND parentId = :parentTask")
     fun getSubs(parentTask : Int) : Flow<List<Task>>
 
     @Insert

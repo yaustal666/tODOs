@@ -29,8 +29,8 @@
             android:layout_gravity="start|top"
             android:textSize="18sp"
             android:textColor="@color/black"
-            android:text="AA"
-            android:id="@+id/taskName"/>
+            android:text=""
+            android:id="@+id/task_name"/>
 
         <CheckBox
             android:id="@+id/checkbox_task_favorite"

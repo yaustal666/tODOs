@@ -10,6 +10,7 @@ import javax.inject.Provider
 
 @Database(entities = [Task::class, TaskList::class], version=1)
 abstract class AppDataBase : RoomDatabase() {
+
     abstract fun taskDAO() : TaskDao
     abstract fun taskListDAO() : TaskListDao
 
@@ -23,7 +24,14 @@ abstract class AppDataBase : RoomDatabase() {
 
             val daoTask =  database.get().taskDAO()
 
-            appScope.launch {  }
+            appScope.launch {
+                daoTask.addTask(Task(name = "Wheres my soess", whatList = 1))
+                daoTask.addTask(Task(name = "Wheres my soess", whatList = 1))
+                daoTask.addTask(Task(name = "Wheres my soess", whatList = 1))
+                daoTask.addTask(Task(name = "Wheres my soess", whatList = 1))
+                daoTask.addTask(Task(name = "Wheres my soess", whatList = 1))
+
+            }
         }
     }
 }
