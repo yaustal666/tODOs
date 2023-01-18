@@ -25,7 +25,7 @@ abstract class AppDataBase : RoomDatabase() {
             val daoTask =  database.get().taskDAO()
 
             appScope.launch {
-                daoTask.addTask(Task(name = "Wheres my soess", whatList = 1))
+                daoTask.addTask(Task(name = "Wheres my soess", whatList = 1, isCompleted = true))
                 daoTask.addTask(Task(name = "Wheres my soess", whatList = 1))
                 daoTask.addTask(Task(name = "Wheres my soess", whatList = 1))
                 daoTask.addTask(Task(name = "Wheres my soess", whatList = 1))

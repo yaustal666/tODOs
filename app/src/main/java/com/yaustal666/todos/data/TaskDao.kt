@@ -14,6 +14,9 @@ interface TaskDao {
             "WHERE NOT subtask AND parentId = :parentTask")
     fun getSubs(parentTask : Int) : Flow<List<Task>>
 
+    @Query("SELECT * FROM tasks WHERE (completed <> :completed OR completed = 0)")
+    fun getCompleted(completed : Boolean) : Flow<List<Task>>
+
     @Insert
     suspend fun addTask(task : Task)
 
