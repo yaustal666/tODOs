@@ -14,12 +14,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolist.R
 import com.example.todolist.databinding.FragmentTaskListBinding
+import com.yaustal666.todos.data.Task
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TaskFragment : Fragment(R.layout.fragment_task_list), MenuProvider {
+class TaskFragment : Fragment(R.layout.fragment_task_list), MenuProvider, TaskAdapter.onItemClickListener {
 
     private val viewModel: TaskViewModel by viewModels()
 
@@ -28,7 +29,7 @@ class TaskFragment : Fragment(R.layout.fragment_task_list), MenuProvider {
 
         val binding = FragmentTaskListBinding.bind(view)
 
-        val taskAdapter = TaskAdapter()
+        val taskAdapter = TaskAdapter(this)
 
         binding.apply {
             taskRecycler.apply {
@@ -44,6 +45,18 @@ class TaskFragment : Fragment(R.layout.fragment_task_list), MenuProvider {
 
         val menuHost: MenuHost = requireActivity()
         menuHost.addMenuProvider(this, viewLifecycleOwner, Lifecycle.State.RESUMED)
+    }
+
+    override fun onItemClick(task: Task) {
+        viewModel.onTaskSelected(task)
+    }
+
+    override fun onCheckboxClick(task: Task, isChecked: Boolean) {
+        viewModel.onTaskCheckedChanged(task, isChecked)
+    }
+
+    override fun onFavoriteClick(task: Task, isChecked: Boolean) {
+        viewModel.onTaskFavoriteChanged(task, isChecked)
     }
 
     override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {

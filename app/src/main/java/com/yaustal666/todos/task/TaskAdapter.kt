@@ -8,7 +8,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolist.databinding.TaskBinding
 import com.yaustal666.todos.data.Task
 
-class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder>(DiffCallback()) {
+class TaskAdapter(private val listener: onItemClickListener) :
+    ListAdapter<Task, TaskAdapter.TaskViewHolder>(DiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
         val binding = TaskBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -20,8 +21,39 @@ class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder>(DiffCallback()
         holder.bind(curItem)
     }
 
-    class TaskViewHolder(private val binding: TaskBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(task : Task) {
+    inner class TaskViewHolder(private val binding: TaskBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.apply {
+                root.setOnClickListener {
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val task = getItem(position)
+                        listener.onItemClick(task)
+                    }
+
+                }
+
+                checkboxTaskCompleted.setOnClickListener {
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val task = getItem(position)
+                        listener.onCheckboxClick(task, checkboxTaskCompleted.isChecked)
+                    }
+                }
+
+                checkboxTaskFavorite.setOnClickListener {
+                    val position = bindingAdapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        val task = getItem(position)
+                        listener.onFavoriteClick(task, checkboxTaskFavorite.isChecked)
+                    }
+                }
+            }
+        }
+
+        fun bind(task: Task) {
             binding.apply {
                 checkboxTaskCompleted.isChecked = task.isCompleted
                 taskName.text = task.name
@@ -29,6 +61,15 @@ class TaskAdapter : ListAdapter<Task, TaskAdapter.TaskViewHolder>(DiffCallback()
                 checkboxTaskFavorite.isChecked = task.isFavorite
             }
         }
+    }
+
+    interface onItemClickListener {
+
+        fun onItemClick(task: Task)
+
+        fun onCheckboxClick(task: Task, isChecked: Boolean)
+        fun onFavoriteClick(task: Task, isChecked: Boolean)
+
     }
 
     class DiffCallback : DiffUtil.ItemCallback<Task>() {
